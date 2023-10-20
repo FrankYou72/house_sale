@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'sale.apps.SaleConfig'
 ]
 
 MIDDLEWARE = [
@@ -75,10 +77,15 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vtfupbkz',
+        'USER': 'vtfupbkz',
+        'PASSWORD': 'nU64ZCEQU7uHIGshSw9qncGvR8nHxVsx',
+        'HOST': 'isabelle.db.elephantsql.com',  # Set to your PostgreSQL server's host if different
+        'PORT': '',  # Leave empty to use the default PostgreSQL port (5432)
     }
 }
+
 
 
 # Password validation
