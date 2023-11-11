@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from import_export.admin import ImportExportModelAdmin
 
 from .models.item import Item
 from .models.buyer import Buyer
@@ -12,7 +13,7 @@ class OfferInline(admin.TabularInline):
 
 
 
-class ItemAdmin(admin.ModelAdmin):
+class ItemAdmin(ImportExportModelAdmin):
     def image_tag(self, obj):
         try:
             return mark_safe(f'<img src="{obj.image.url}" width="100" height="100" />')

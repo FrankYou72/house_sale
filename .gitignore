@@ -3,3 +3,4 @@ venv
 *.pyc
 settings.py
 static/
+images/
