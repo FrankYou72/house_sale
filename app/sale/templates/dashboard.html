@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Home{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Acompanhamento da venda da casa</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Venda esperada</h3>
+                        <p class="card-text">R$ {{ total_expected}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Venda efetuada</h3>
+                        <p class="card-text">R$ {{ total_sold }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Andamento</h3>
+                        <p class="card-text">{{ percentage }}%</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add your content specific to this page -->
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Home{% endblock %}
+
+{% block content %}
+    <h1 class="card-body">Ofertas de {{buyer.name}}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Preço</th>
+                <th>Confirmado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for offer in offers %}
+                <tr>
+                    <td>{{ offer.item.name }}</td>
+                    <td>{{ offer.item.start_price }}</td>
+                    {% if offer.item.bought and offer.accepted %}
+                        <td style="color: green; font-size: 24px;">&#x2713;</td>
+                    {% else %}
+                        <td style="color: red; font-size: 24px;">&#88;</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2 class="card-body">Total: R$ {{total}}</h2>
+    <!-- Add your content specific to this page -->
+{% endblock %}

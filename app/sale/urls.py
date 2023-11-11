@@ -19,10 +19,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from .views import views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('dashboard/', include("sale.urls"))
+    path('', views.dashboard),
+    path('buyer', views.list_buyers),
+    path('buyer/<int:buyer_id>', views.list_offers)
 ]
 
 #if settings.DEBUG:

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Home{% endblock %}
+
+{% block content %}
+    <h1 class="card-body">Lista de compradores</h1>
+    <ul>
+    {% for buyer in buyers %}
+        <a href="buyer/{{buyer.id}}"><li><h3>{{buyer.name}}</h3></li></a>
+    {% endfor %}
+    </ul>
+    <!-- Add your content specific to this page -->
+{% endblock %}
