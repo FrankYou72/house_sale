@@ -16,7 +16,8 @@ def list_buyers(request):
 def list_offers(request, buyer_id):
     buyer = Buyer.objects.get(id=buyer_id)
     offers = buyer.offer_set.all()
-    total = sum([offer.item.start_price for offer in offers])
+    accepted_offers = offers.filter(accepted=True)
+    total = sum([offer.item.start_price for offer in accepted_offers])
 
     return render(request, "offer.html", context={"buyer": buyer, "offers": offers, "total": total})
 
