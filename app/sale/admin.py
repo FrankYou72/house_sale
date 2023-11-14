@@ -21,12 +21,21 @@ class ItemAdmin(ImportExportModelAdmin):
             return None
 
     list_display = ["name", "type", "start_price", "bought", "image_tag"]
+    fields = ["name", "type", "description", "start_price", "lowest_price", "image"]
     image_tag.short_description = 'Image Preview'
     inlines = [OfferInline]
 
 
 
 class OfferAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        if obj.accepted and not obj.item.bought:
+            obj.item.bought = True
+            obj.item.save()
+
+        obj.save()
+
+
     list_display = ("buyer", "item", "value", "accepted")
 
 
