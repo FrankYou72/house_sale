@@ -5,6 +5,7 @@ from import_export.admin import ImportExportModelAdmin
 from .models.item import Item
 from .models.buyer import Buyer
 from .models.offer import Offer
+from .models.payment import Payment
 
 
 class OfferInline(admin.TabularInline):
@@ -42,6 +43,12 @@ class BuyerAdmin(admin.ModelAdmin):
 
 
 
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ("buyer", "value", "date")
+
+
+
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Buyer, BuyerAdmin)
 admin.site.register(Offer, OfferAdmin)
+admin.site.register(Payment, PaymentAdmin)

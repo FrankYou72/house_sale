@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Pagamentos{% endblock %}
+
+{% block content %}
+    <h1 class="card-body">Pagamentos de {{buyer.name}}</h1>
+    <div class="flex-row">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        <div class="col card bg-primary text-white mr-4">
+        <h2 class="card-body">Total comprado:<br>R$ {{total_bought}}</h2></div>
+        <div class="col card bg-success text-white mr-4 ml-4">
+        <h2 class="card-body">Total pago:<br>R$ {{total_paid}}</h2></div>
+        <div class="col card bg-danger text-white ml-4">
+        <h2 class="card-body">A pagar:<br>R$ {{total_debt}}</h2></div>
+    </div></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Comprovante</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.date }}</td>
+                    <td>{{ payment.value }}</td>
+                    <td><a href={{payment.voucher.url}}>link</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

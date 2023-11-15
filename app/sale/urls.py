@@ -25,7 +25,8 @@ from .views import views
 urlpatterns = [
     path('', views.dashboard),
     path('buyer', views.list_buyers),
-    path('buyer/<int:buyer_id>', views.list_offers)
+    path('buyer/<int:buyer_id>', views.list_offers),
+    path('payment/<int:buyer_id>', views.payment)
 ]
 
 #if settings.DEBUG:

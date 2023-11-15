@@ -26,6 +26,9 @@
             {% endfor %}
         </tbody>
     </table>
+    <div class="row">
     <h2 class="card-body">Total: R$ {{total}}</h2>
+        <a href="/dashboard/payment/{{buyer.id}}"><button type="button" class="card-link btn btn-success"><h2>Pagamentos</h2></button>
+    </div>
     <!-- Add your content specific to this page -->
 {% endblock %}
