@@ -3,14 +3,19 @@
 {% block title %}Pagamentos{% endblock %}
 
 {% block content %}
+    <div class="flex-row row">
     <h1 class="card-body">Pagamentos de {{buyer.name}}</h1>
+        <a class="card-body" href="/dashboard/buyer/{{buyer.id}}">
+            <button type="button" class="btn btn-link">Voltar</button>
+        </a>
+    </div>
     <div class="flex-row">
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-        <div class="col card bg-primary text-white mr-4">
-        <h2 class="card-body">Total comprado:<br>R$ {{total_bought}}</h2></div>
-        <div class="col card bg-success text-white mr-4 ml-4">
-        <h2 class="card-body">Total pago:<br>R$ {{total_paid}}</h2></div>
-        <div class="col card bg-danger text-white ml-4">
+    <div class="row">
+        <div class="card bg-primary text-white m-4">
+        <h2 class="card-body">Total:<br>R$ {{total_bought}}</h2></div>
+        <div class="card bg-success text-white m-4">
+        <h2 class="card-body">Pago:<br>R$ {{total_paid}}</h2></div>
+        <div class="card bg-danger text-white m-4">
         <h2 class="card-body">A pagar:<br>R$ {{total_debt}}</h2></div>
     </div></div>
     <table class="table">

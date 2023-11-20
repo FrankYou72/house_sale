@@ -25,10 +25,29 @@
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h3 class="card-title">Andamento</h3>
+                        <h3 class="card-title">Total recebido</h3>
+                        <p class="card-text">R$ {{ total_paid }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Venda</h3>
                         <p class="card-text">{{ percentage }}%</p>
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Recebimento</h3>
+                        <p class="card-text">{{ percentage_paid }}%</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{ percentage_paid }}%; background-color: green;" aria-valuenow="{{ percentage_paid }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
