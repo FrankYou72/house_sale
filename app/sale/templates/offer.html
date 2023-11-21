@@ -4,6 +4,22 @@
 
 {% block content %}
     <h1 class="card-body">Ofertas de {{buyer.name}}</h1>
+    <div class="flex-row">
+    <div class="row">
+        <div class="col-3 card bg-primary text-white m-4 mw-" style="min-width:15rem">
+            <h3 class="card-title">Total</h3>
+            <h4 class="card-body">R$ {{total}}</h4>
+        </div>
+        <div class="col-3 card bg-success text-white m-4" style="min-width:15rem">
+            <h3 class="card-title">Pago</h3>
+            <h4 class="card-body">R$ {{total_paid}}</h4>
+        </div>
+        <div class="col-3 card bg-danger text-white m-4" style="min-width:15rem">
+            <h3 class="card-title">A pagar</h3>
+            <h4 class="card-body">R$ {{total_debt}}</h4>
+        </div>
+    </div></div>
+    <table class="table">
     <table class="table">
         <thead>
             <tr>
@@ -27,8 +43,12 @@
         </tbody>
     </table>
     <div class="row">
-    <h2 class="card-body">Total: R$ {{total}}</h2>
-        <a href="/dashboard/payment/{{buyer.id}}"><button type="button" class="card-link btn btn-success"><h2>Pagamentos</h2></button>
+        <h5 class="card-body">Total: R$ {{total}}</h5>
+        <a href="/dashboard/payment/{{buyer.id}}">
+            <button type="button" class="card-link btn btn-success">
+                <h4>Pagamentos</h4>
+            </button>
+        </a>
     </div>
     <!-- Add your content specific to this page -->
 {% endblock %}

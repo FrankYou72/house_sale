@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Pagamentos{% endblock %}
 
@@ -11,12 +12,18 @@
     </div>
     <div class="flex-row">
     <div class="row">
-        <div class="card bg-primary text-white m-4">
-        <h2 class="card-body">Total:<br>R$ {{total_bought}}</h2></div>
-        <div class="card bg-success text-white m-4">
-        <h2 class="card-body">Pago:<br>R$ {{total_paid}}</h2></div>
-        <div class="card bg-danger text-white m-4">
-        <h2 class="card-body">A pagar:<br>R$ {{total_debt}}</h2></div>
+        <div class="col-3 card bg-primary text-white m-4 mw-" style="min-width:15rem">
+            <h3 class="card-title">Total</h3>
+            <h4 class="card-body">R$ {{total}}</h4>
+        </div>
+        <div class="col-3 card bg-success text-white m-4" style="min-width:15rem">
+            <h3 class="card-title">Pago</h3>
+            <h4 class="card-body">R$ {{total_paid}}</h4>
+        </div>
+        <div class="col-3 card bg-danger text-white m-4" style="min-width:15rem">
+            <h3 class="card-title">A pagar</h3>
+            <h4 class="card-body">R$ {{total_debt}}</h4>
+        </div>
     </div></div>
     <table class="table">
         <thead>

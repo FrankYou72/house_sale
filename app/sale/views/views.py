@@ -28,8 +28,9 @@ def list_offers(request, buyer_id):
         "offers": offers,
         "total": total,
         "total_paid": total_paid,
-        "total_debit": total_debt
+        "total_debt": total_debt
     }
+    print(context)
 
     return render(request, "offer.html", context=context)
 
@@ -58,16 +59,16 @@ def payment(request, buyer_id):
     buyer = Buyer.objects.get(id=buyer_id)
     offers = buyer.offer_set.all()
     accepted_offers = offers.filter(accepted=True)
-    total_bought = sum([offer.item.start_price for offer in accepted_offers])
+    total = sum([offer.item.start_price for offer in accepted_offers])
     payments = buyer.payment_set.all()
     total_paid = sum([payment.value for payment in payments])
-    total_debt = total_bought - total_paid
+    total_debt = total - total_paid
     context = {
         "buyer": buyer,
         "payments": payments,
-        "total_bought": total_bought,
+        "total": total,
         "total_paid": total_paid,
         "total_debt": total_debt
     }
 
-    return render(request, "payment.html")
+    return render(request, "payment.html", context)
