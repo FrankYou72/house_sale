@@ -1,17 +1,28 @@
 from django.shortcuts import render
+from django.db.models import Sum, F, ExpressionWrapper, FloatField
+from django.db.models.functions import Coalesce
 
 from ..models.buyer import Buyer
 from ..models.offer import Offer, OfferSerializer
 from ..models.item import Item
 from ..models.payment import Payment
 
+
 def base_view(request):
     return render(request, "base.html")
 
 
 def list_buyers(request):
-    buyers = Buyer.objects.all().exclude(offer=None).order_by('name')
+    buyers = Buyer.objects.exclude(offer=None).annotate(
+        total_offer=Coalesce(Sum('offer__value'), 0.0),
+        total_payment=Coalesce(Sum('payment__value'), 0.0),
+        difference=ExpressionWrapper(
+            F('total_offer') - F('total_payment'),
+            output_field=FloatField()
+        )
+    )
     context = {"buyers": buyers}
+    print(buyers.values('id', 'name', 'total_offer', 'total_payment', 'difference'))
     return render(request, "buyer.html", context=context)
 
 

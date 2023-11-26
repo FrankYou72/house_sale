@@ -4,10 +4,29 @@
 
 {% block content %}
     <h1 class="card-body">Lista de compradores</h1>
-    <ul>
-    {% for buyer in buyers %}
-        <a href="buyer/{{buyer.id}}"><li><h3>{{buyer.name}}</h3></li></a>
-    {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Comprado</th>
+                <th>Pago</th>
+                <th>Dívida</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for buyer in buyers %}
+                <tr>
+                    <td><a href="buyer/{{buyer.id}}"><h4>{{buyer.name}}</h4></a></td>
+                    <td>R$ {{buyer.total_offer}}0</td>
+                    <td>R$ {{buyer.total_payment}}0</td>
+                    {% if buyer.difference > 0 %}
+                    <td class="text-danger"><h5>R$ {{buyer.difference}}0</h5></td>
+                    {% else %}
+                        <td>R$ {{buyer.difference}}0</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <!-- Add your content specific to this page -->
 {% endblock %}

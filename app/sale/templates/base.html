@@ -8,6 +8,21 @@
     <title>{% block title %}Dashboard{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'sale/css/base.css' %}">
+    <style>
+        @media (max-width: 768px) {
+            #sidebar {
+                display: none;
+            }
+            #sidebar.show {
+                display: block;
+            }
+        }
+        .sidebar-exit {
+            cursor: pointer;
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,5 +78,26 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+    <script>
+        $(document).ready(function() {
+            // Open/close sidebar when clicking the navbar toggler
+            $('.navbar-toggler').click(function() {
+                $('#sidebar').toggleClass('show');
+            });
+
+            // Close sidebar when clicking outside the sidebar
+            $(document).click(function(event) {
+                if (!$(event.target).closest('#sidebar').length && !$(event.target).is('.navbar-toggler')) {
+                    $('#sidebar').removeClass('show');
+                }
+            });
+
+            // Close sidebar when clicking on the exit button
+            $('.sidebar-exit').click(function() {
+                $('#sidebar').removeClass('show');
+            });
+        });
+    </script>
 </body>
 </html>
