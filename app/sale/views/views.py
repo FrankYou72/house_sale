@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.db.models import Sum, F, ExpressionWrapper, FloatField
-from django.db.models.functions import Coalesce
 
 from ..models.buyer import Buyer
-from ..models.offer import Offer, OfferSerializer
 from ..models.item import Item
 from ..models.payment import Payment
+from utils.connection import execute_query
+from ..queries.buyer_debt import query as buyer_debt
 
 
 def base_view(request):
@@ -13,16 +12,9 @@ def base_view(request):
 
 
 def list_buyers(request):
-    buyers = Buyer.objects.exclude(offer=None).annotate(
-        total_offer=Coalesce(Sum('offer__value'), 0.0),
-        total_payment=Coalesce(Sum('payment__value'), 0.0),
-        difference=ExpressionWrapper(
-            F('total_offer') - F('total_payment'),
-            output_field=FloatField()
-        )
-    )
+    buyers = execute_query(buyer_debt)
     context = {"buyers": buyers}
-    print(buyers.values('id', 'name', 'total_offer', 'total_payment', 'difference'))
+    print(buyers)
     return render(request, "buyer.html", context=context)
 
 
